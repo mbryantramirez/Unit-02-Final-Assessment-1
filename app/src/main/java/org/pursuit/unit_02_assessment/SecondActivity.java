@@ -12,6 +12,9 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        /**
+         * This textview doesn't exist in your second activity it should be second_textView
+         */
         TextView textView = (TextView) findViewById(R.id.info_textview);
         Intent intent = getIntent();
         result = "";

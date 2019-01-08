@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /**
+                 * Uri scheme should be mailto instead of send to there is no apps that can handle the current scheme
+                 */
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("send to", "mail.pursuit.org", null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Email from Pursuit");
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "This is my text!");
@@ -56,6 +59,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         final RandomGame randomGame = new RandomGame();
+        /**
+         * This should be a field
+         */
         final int random = randomGame.getRandomNumber();
 
         Button submitButton = findViewById(R.id.submit_button);
@@ -63,13 +69,18 @@ public class MainActivity extends AppCompatActivity
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /**
+                 * You should be using the stringToInt method in RandomGame to convert the edittext value to an int
+                 * and then use the checkGuess method to check if the number matches the random number
+                 */
                 EditText editText = (EditText) findViewById(R.id.number_edittext);
                 if (editText.getText().equals(randomGame.getStringResult(true))) {
                     Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                     intent.putExtra("result", "You have guessed correctly!");
                 } else {
-
-
+                    /**
+                     * Logic should only be setting the current textview to the losing message
+                     */
                     Intent textViewIntent = new Intent(textView.getText().toString());
                     textViewIntent.putExtra("lost", "Wrong guess - please try again!");
 
@@ -136,6 +147,9 @@ public class MainActivity extends AppCompatActivity
                 startActivity(smsIntent);
                 break;
             case R.id.nav_map_location:
+                /**
+                 * inorder open a map intent your action needs to be Intent.ACTION_SENDTO
+                 */
                 Uri navUri = Uri.parse("0,0?q=40.7429595,-73.94192149999998(Pursuit Android HQ)");
                 Intent mapsIntent = new Intent(Intent.ACTION_VIEW, navUri);
                 startActivity(mapsIntent);
